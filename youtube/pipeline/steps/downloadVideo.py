@@ -7,8 +7,9 @@ import urllib.request
 
 class DownLoadVideos(Step):
     def process(self, data, inputs, utils):
-        yt_set = set([found.yto for found in data])
-        for yto in yt_set:
+        # yt_set = set([found.yt for found in data])
+        for found in data:
+            yto = found.yt
             url = yto.url
             print('downloading', url)
             if utils.video_file_exists(yto):

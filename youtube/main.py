@@ -4,6 +4,7 @@ from youtube.pipeline.steps.dowmload_captions import DownloadCaptions
 from youtube.pipeline.steps.read_caption import ReadCaptions
 from youtube.pipeline.steps.search import Search
 from youtube.pipeline.steps.downloadVideo import DownLoadVideos
+from youtube.pipeline.steps.editVideo import EditVideo
 from youtube.pipeline.pipeline import Pipeline
 from youtube.utils import Utils
 from youtube.pipeline.steps.preflight import Preflight
@@ -17,6 +18,7 @@ def main():
     inputs = {
         'channel_id': CHANNEL_ID,
         'search_word': 'incredible',
+        'limit' : 5,
     }
     steps = [
         Preflight(),
@@ -26,6 +28,8 @@ def main():
         ReadCaptions(),
         Search(),
         DownLoadVideos(),
+        EditVideo(),
+        Postflight(),
     ]
     utils = Utils()
     p = Pipeline(steps)
